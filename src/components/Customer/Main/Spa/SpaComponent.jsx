@@ -30,7 +30,7 @@ function GymComponent() {
     }
   };
   const showSpas = () => {
-    if (spas.length > 0) {
+    if (spas?.length > 0) {
       return spas[0].spas.map((spa) => {
         return (
           <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
@@ -78,7 +78,7 @@ function GymComponent() {
   if (!spas) {
     return <EmptyProduct name="Spa" />;
   }
-  if (spas.length === 0) {
+  if (spas?.length === 0) {
     return <LoadingComponent />;
   }
   if (spas[0]?.spas?.length > 0) {

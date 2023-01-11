@@ -48,7 +48,7 @@ function RestaurantDetailComponent() {
   };
 
   const showDishs = () => {
-    if (restaurants.length > 0) {
+    if (restaurants?.length > 0) {
       return restaurants[0].dishs.map((dish) => {
         return (
           <div key={dish?.id} className="col-xs-3 col-sm-3 col-md-3 col-lg-3">

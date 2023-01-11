@@ -69,7 +69,7 @@ export default function QuizComponent() {
               );
             })}
           </div>
-          {index !== allQuestion.length - 1 && (
+          {index !== allQuestion?.length - 1 && (
             <div className={styles.btn_group}>
               <button
                 className={`carousel-control-next ${styles.next_icon}`}
@@ -87,7 +87,7 @@ export default function QuizComponent() {
             </div>
           )}
 
-          {index === allQuestion.length - 1 && (
+          {index === allQuestion?.length - 1 && (
             <button
               onClick={handleSubmitQuiz}
               type="button"

@@ -10,9 +10,10 @@ function FeedbackComponentAdmin() {
     try {
       getAllFeedback().then((feedbackList) => {
         const { feedbacks, hotels } = feedbackList;
+        
         setHotels(hotels);
         setFeedbackList(feedbacks);
-        const firstHotel = hotels[0]?.hotels?.id;
+        const firstHotel = hotels.length > 0 ??  hotels[0]?.hotels?.id;
         const filterFirstHotel = feedbacks.filter(
           (hotel) => hotel?.hotel?.id == firstHotel
         );
@@ -31,7 +32,8 @@ function FeedbackComponentAdmin() {
     }
   };
   const showFeedback = () => {
-    if (feedback.length > 0) {
+    if (feedback?.length > 0) {
+  
       return feedback.map((feedback) => {
         return (
           <tr key={feedback?.id}>
@@ -56,8 +58,15 @@ function FeedbackComponentAdmin() {
     setFeedback(filterFeedback);
   };
   const showHotels = () => {
-    if (hotels.length) {
-      return hotels.map((hotel, index) => {
+    if (hotels?.length) {
+      const result = hotels.reduce((prevState, currentState) => {
+        const check = prevState.every(hotel => hotel?.hotel?.id != currentState?.hotel?.id)
+        if(check) {
+          prevState.push(currentState)
+        }
+        return [...prevState]
+      }, [])
+      return result.map((hotel, index) => {
         return (
           <option
             key={hotel?.id}

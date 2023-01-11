@@ -40,12 +40,12 @@ function ProfileComponent() {
   // PUSH 1
   console.log(recovery);
   const showRecommend = () => {
-    if (recommend.length === 0) {
+    if (recommend?.length === 0) {
       return (
         <h1 className="text-center">{`No Recommend for ${value.toUpperCase()} `}</h1>
       );
     }
-    if (recommend.length > 0) {
+    if (recommend?.length > 0) {
       const list = recommendMain.filter(
         (recommend) => recommend.type === value
       );

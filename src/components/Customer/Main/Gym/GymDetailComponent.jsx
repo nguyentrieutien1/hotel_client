@@ -101,7 +101,7 @@ function GymDetailComponent() {
   if (!workouts) {
     return <EmptyProduct name="Workout" />;
   }
-  if (workouts.length === 0) {
+  if (workouts?.length === 0) {
     return <LoadingComponent />;
   }
   return (

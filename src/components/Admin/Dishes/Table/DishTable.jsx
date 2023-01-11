@@ -8,7 +8,7 @@ export default function DishTable(props) {
     });
   };
   const showDishes = () => {
-    if (dishes.length > 0) {
+    if (dishes?.length > 0) {
       return dishes[0].dishs.map((dish) => {
         return (
           <tr>

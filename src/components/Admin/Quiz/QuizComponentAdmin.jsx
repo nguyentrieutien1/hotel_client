@@ -27,7 +27,14 @@ export default function QuizComponentAdmin() {
   };
   const showHotels = () => {
     if (hotels?.length > 0) {
-      return hotels.map((hotel) => {
+      const result = hotels.reduce((prevState, currentState) => {
+        const check = prevState.every(hotel => hotel?.hotels?.id != currentState?.hotels?.id)
+        if(check) {
+          prevState.push(currentState)
+        }
+        return [...prevState]
+      }, [])
+      return result.map((hotel) => {
         return (
           <option key={hotel?.id} value={hotel?.hotels?.id}>
             {hotel?.hotels?.hotel_name}

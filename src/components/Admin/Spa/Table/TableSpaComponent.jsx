@@ -7,7 +7,7 @@ export default function TableSpaComponent(props) {
     });
   };
   const showSpas = () => {
-    if (props.spas.length > 0) {
+    if (props.spas?.length > 0) {
       return props.spas[0].spas.map((spa) => {
         return (
           <tr key={spa.id}>

@@ -18,7 +18,7 @@ function RestaurantComponent() {
     });
   }, []);
   const showRestaurants = () => {
-    if (restaurants.length > 0) {
+    if (restaurants?.length > 0) {
       return restaurants[0].restaurants.map((restaurant) => {
         return (
           <div
@@ -72,7 +72,7 @@ function RestaurantComponent() {
     );
     return result.data;
   };
-  if (restaurants.length === 0) {
+  if (restaurants?.length === 0) {
     return <LoadingComponent />;
   }
   if (restaurants[0]?.restaurants.length > 0) {

@@ -8,7 +8,7 @@ export default function WorkoutTable(props) {
     });
   };
   const showWorkouts = () => {
-    if (workouts.length > 0) {
+    if (workouts?.length > 0) {
       return workouts[0].workouts.map((workout) => {
         return (
           <tr>

@@ -27,7 +27,7 @@ function GymComponent() {
     }
   };
   const showGyms = () => {
-    if (restaurants.length > 0) {
+    if (restaurants?.length > 0) {
       return restaurants[0].gyms.map((gym) => {
         return (
           <div key={gym?.id} className="col-xs-3 col-sm-3 col-md-3 col-lg-3">

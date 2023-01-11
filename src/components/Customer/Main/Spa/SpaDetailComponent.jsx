@@ -69,7 +69,7 @@ function SpaDetailComponent() {
                 </div>
 
                 <div className="card-body">
-                  <img src={treatment.images[1]?.image_url} alt="" />
+                  <img src={treatment.images[0]?.image_url} alt="" />
                   {/* */}
                   <p className={`card-text ${styles.restaurant_description}`}>
                     {treatment.treatment_description}
@@ -87,10 +87,11 @@ function SpaDetailComponent() {
       });
     }
   };
+  console.log(spas[0]?.treatments);
   if (!spas) {
     return <EmptyProduct name="Treatment" />;
   }
-  if (spas.length === 0) {
+  if (spas?.length === 0) {
     return <LoadingComponent />;
   }
   if (spas[0]?.treatments.length > 0) {
@@ -115,13 +116,6 @@ function SpaDetailComponent() {
                 />
               </div>
             </div>
-            {/* <div>
-              <img
-                className={styles.restaurant_detail_images}
-                src={`${spas[0]?.image.image_url}`}
-                alt="hehe"
-              />
-            </div>{" "} */}
             <div className="my-5">
               <h2>Qi-moving full body massage </h2>
               <ul>

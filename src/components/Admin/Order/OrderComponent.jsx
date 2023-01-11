@@ -10,6 +10,7 @@ function OrderComponent() {
   const [id, setId] = useState(null);
   useEffect(() => {
     getOrder().then((orders) => {
+      console.log(orders);
       setData(orders);
     });
   }, []);
@@ -19,7 +20,9 @@ function OrderComponent() {
         `${import.meta.env.VITE_BACKEND_SITE}/order`
       );
       return result.data;
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
   const handleChangeId = (e) => {
     const { value } = e.target;
@@ -36,6 +39,7 @@ function OrderComponent() {
   };
   const showHotel = () => {
     if (data?.hotels?.length) {
+      console.log(data);
       return data?.hotels?.map((hotel) => {
         return (
           <option
@@ -47,7 +51,8 @@ function OrderComponent() {
     }
   };
   const showResult = () => {
-    if (result.length) {
+    console.log(result);
+    if (result?.length) {
       return result.map((r) => {
         if (r?.hotel?.id == id) {
           return (
