@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setHotelList } from "../../../features/hotel/hotel";
 import { uploadFile } from "../../../helpers/uploadFile";
+import {getCookie} from "./../../../helpers/cookie.helper"
 export default function HotelContainerAdmin() {
   const alert = useAlert();
   const inputElement = useRef();
@@ -40,7 +41,13 @@ export default function HotelContainerAdmin() {
   };
   const getAllHotel = async () => {
     const result = await axios.get(
-      `${import.meta.env.VITE_BACKEND_SITE}/hotels`
+      `${import.meta.env.VITE_BACKEND_SITE}/hotels`,
+      {
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${getCookie("access_token")}`,
+        },
+      }
     );
     return result.data;
   };

@@ -1,11 +1,46 @@
-version: '3.8'
-
 services:
-  dev:
-    build: 
-      context: ./
-      dockerfile: Dockerfile
-    volumes:
-      - ./:/app
+  backend:
+    build:
+      args:
+      - NODE_ENV=development
+      context: hotel_server
+      target: development
+    command: npm run start
+    environment:
+      - DATABASE_DB=hotel
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=nguyenthanhtung
+      - DATABASE_HOST=db
+      - NODE_ENV=development
     ports:
-      - '3000:3000'
+      - 80:80
+      - 3306:3306
+      - 3308:3308
+    secrets:
+      - nguyenthanhtung
+    volumes:
+      - ./hotel_client/src:/code/src:ro
+      - ./hotel_client/package.json:/code/package.json
+      - ./hotel_client/package-lock.json:/code/package-lock.json
+      - back-notused:/opt/app/node_modules
+    networks:
+      - public
+      - private
+    depends_on:
+      - db
+  db:
+    # We use a mariadb image which supports both amd64 & arm64 architecture
+    image:  mysql:8.0.27
+    # If you really want to use MySQL, uncomment the following line
+    #image: mysql:8.0.27
+    command: '--default-authentication-plugin=mysql_native_password'
+    restart: always
+    secrets:
+      - nguyenthanhtung
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - private
+    environment:
+      - MYSQL_DATABASE=nguyenthanhtung
+      - MYSQL_ROOT_PASSWORD_FILE=nguyenthanhtung

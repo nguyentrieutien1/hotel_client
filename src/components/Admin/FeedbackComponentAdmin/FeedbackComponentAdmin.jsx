@@ -58,6 +58,7 @@ function FeedbackComponentAdmin() {
     setFeedback(filterFeedback);
   };
   const showHotels = () => {
+    console.log(hotels)
     if (hotels?.length) {
       const result = hotels.reduce((prevState, currentState) => {
         const check = prevState.every(hotel => hotel?.hotel?.id != currentState?.hotel?.id)
